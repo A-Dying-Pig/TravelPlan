@@ -1,19 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="initial-scale=1.0, user-scalable=no"> 
     <title>TravelPlan</title>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="/static/css/travel.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
     {% verbatim %}
-    <div id="app">
-        {{ message }}
+    <div id='app'>
+        <el-container>
+            <el-header>Travel With Me</el-header>
+            <el-container>
+            <el-aside width="200px">TODO:Travel Plan</el-aside>
+            <el-main>
+                <el-row :gutter="20">
+                    <el-col :span="10">
+                        <el-input placeholder="城市名称" @change='city_search' v-model="city">
+                            <template slot="prepend">旅行城市</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="10">
+                        <el-autocomplete
+                        class="inline-input"
+                        v-model="site"
+                        :fetch-suggestions="site_search"
+                        placeholder="旅行地点"
+                        @select="tip_select"
+                      >
+                      <template slot="prepend">旅行地点</template>
+                    </el-autocomplete>
+
+                    </el-col>
+                    <el-col :span="4">
+                        <el-button type="text">添加</el-button>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <div id='map' :style='{width: mapWidth,height:mapHeight}'></div>
+                    </el-col>
+                </el-row>
+            </el-main>
+            </el-container>
+        </el-container>
     </div>
+
     {% endverbatim %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=991d082745181ac6da9358c8d6ee7b44"></script> 
     <script src="/static/js/vue.js"></script>
-    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="/static/js/travel.js"></script>
+
+
+
 </body>
 </html>
 

@@ -19,3 +19,4 @@ def transport(request):
     if not transport_list:
         transport_list = []
     return HttpResponse(json.dumps(transport_list), content_type="application/json")
+
